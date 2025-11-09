@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>طعمية وفلافل بشار التميمي - قائمة الطلبات</title>
+    <title>طعمية وفلافل بشار التميمي 👑 - قائمة الطلبات</title>
     
     <style>
         body {
@@ -18,7 +18,9 @@
         h1 {
             color: #CC0000; 
             text-align: center;
-            border-bottom: 2px solid #FF7F50;             margin-bottom: 30px;
+            border-bottom: 2px solid #FF7F50; 
+            padding-bottom: 10px;
+            margin-bottom: 30px;
         }
 
         p {
@@ -42,8 +44,18 @@
             flex-wrap: wrap;
         }
         
+        .item-img {
+            width: 80px; 
+            height: 80px;
+            object-fit: cover; 
+            border-radius: 6px;
+            margin-left: 15px; 
+            flex-shrink: 0;
+        }
+
         .item-details {
             flex-grow: 1; 
+            margin-right: 10px;
         }
 
         .item-details h2 {
@@ -62,7 +74,8 @@
         .quantity-control {
             display: flex;
             align-items: center;
-            gap: 10px; /* المسافة بين العناصر */
+            gap: 10px; 
+            margin-right: auto;
         }
         
         .quantity-control button {
@@ -75,7 +88,7 @@
             cursor: pointer;
             border-radius: 5px;
             transition: background-color 0.3s;
-            width: 40px; /* لتوحيد شكل الزر */
+            width: 40px; 
         }
 
         .quantity-control button:hover {
@@ -85,10 +98,9 @@
         .item-quantity {
             font-weight: bold;
             font-size: 1.2em;
-            width: 25px; /* لتوسيط الرقم */
+            width: 25px; 
             text-align: center;
         }
-        /* --- نهاية تصميم أزرار التحكم بالكمية --- */
 
         .summary {
             background-color: #fff;
@@ -110,6 +122,20 @@
             color: #1a701a; 
             font-weight: bold;
             margin-bottom: 20px;
+        }
+
+        /* تنسيق حقل الملاحظات الجديد */
+        #notes {
+            width: 95%;
+            min-height: 80px;
+            padding: 10px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: vertical;
+            font-family: inherit;
+            direction: rtl;
         }
         
         /* تصميم زر الواتساب */
@@ -140,14 +166,16 @@
 <body>
     
     <h1>طعمية وفلافل بشار التميمي 👑</h1>
-    <p style="text-align: center; font-size: 1.1em;">أهلاً بك يا زبون! تفضل باختيار طلبك:</p>
+    <p style="text-align: center; font-size: 1.1em;">أهلاً بك في تعز! تفضل باختيار طلبك:</p>
     
     <p class="free-item-note">✅ الصوص الحار متوفر مجاناً عند الطلب!</p>
     
     <ul id="menu-items">
         <li data-item-id="1" data-item-name="بطاطس مقرمشة" data-price="300">
+            <img src="https://i.ibb.co/L5V0sS9/potato.jpg" alt="بطاطس مقرمشة" class="item-img">
             <div class="item-details">
                 <h2>بطاطس مقرمشة</h2>
+                <p>مقلية بتقنية التقريش الخاصة ومتبلة بملح البحر.</p>
                 <p class="item-price">السعر: 300 ريال يمني</p>
             </div>
             <div class="quantity-control">
@@ -158,8 +186,10 @@
         </li>
         
         <li data-item-id="2" data-item-name="ساندويتش فلافل" data-price="300">
+             <img src="https://i.ibb.co/308kRkY/falafel.jpg" alt="ساندويتش فلافل" class="item-img">
             <div class="item-details">
                 <h2>ساندويتش فلافل (طعمية)</h2>
+                <p>فلافل مقرمشة، طحينة، خضار طازجة.</p>
                 <p class="item-price">السعر: 300 ريال يمني</p>
             </div>
             <div class="quantity-control">
@@ -170,8 +200,10 @@
         </li>
         
         <li data-item-id="3" data-item-name="وجبة خاصة (بطاطس وفلافل)" data-price="600">
+             <img src="https://i.ibb.co/N21T4S4/combo.jpg" alt="وجبة خاصة" class="item-img">
             <div class="item-details">
                 <h2>وجبة خاصة (بطاطس وفلافل)</h2>
+                <p>مزيج رائع من البطاطس والفلافل مع الصوص.</p>
                 <p class="item-price">السعر: 600 ريال يمني</p>
             </div>
             <div class="quantity-control">
@@ -196,37 +228,37 @@
     
     <div class="summary">
         <h3 id="total-display">إجمالي الطلب: 0 ريال يمني</h3>
+
+        <textarea id="notes" placeholder="ملاحظات خاصة (الموقع، توصيل، طلبات إضافية)..."></textarea>
         
         <button id="whatsapp-button" disabled>أرسل الطلب الآن (واتساب)</button>
     </div>
 
 
     <script>
-        // 1. المتغيرات الأساسية وبيانات المشروع
-        let cart = {}; // سلة الطلبات: { "1": 0, "2": 0, "3": 0, "4": 0 }
+        let cart = {}; 
         let totalPrice = 0; 
         
         const totalDisplay = document.getElementById('total-display');
         const whatsappButton = document.getElementById('whatsapp-button');
         const menuItems = document.querySelectorAll('#menu-items li');
+        const notesField = document.getElementById('notes'); 
 
-        // الرقم الخاص بك يا بشار التميمي (من معلوماتك السابقة)
+        // تأكد من أن هذا هو رقمك الصحيح
         const YOUR_WHATSAPP_NUMBER = "967733971941"; 
         
-        // تفاصيل الدفع (من معلوماتك السابقة)
+        // تفاصيل الدفع 
         const PAYMENT_DETAILS = 
             `\n---\n*طرق الدفع المتاحة:*\n` +
             `* 💵 نقداً عند الاستلام (العربة).\n` +
             `* 📱 خدمة حاسب (رمز الدفع: 1466204) على الرقم 967733971941.`;
 
 
-        // 2. تهيئة سلة الطلبات (وضع الكمية 0 لكل صنف في البداية)
         menuItems.forEach(item => {
             const itemId = item.getAttribute('data-item-id');
             cart[itemId] = 0;
         });
 
-        // 3. دالة تحديث الإجمالي الكلي وتفعيل زر الواتساب
         function updateOrderSummary() {
             totalPrice = 0;
             let totalItems = 0;
@@ -236,26 +268,28 @@
                 const itemPrice = parseInt(item.getAttribute('data-price'));
                 const quantity = cart[itemId];
                 
-                // حساب الإجمالي
                 totalPrice += quantity * itemPrice;
                 totalItems += quantity;
 
-                // تحديث عرض الكمية على الشاشة
                 document.getElementById(`qty-${itemId}`).textContent = quantity;
             });
 
             totalDisplay.textContent = `إجمالي الطلب: ${totalPrice} ريال يمني`;
             
-            // تفعيل زر الواتساب فقط إذا كان هناك أي صنف تم اختياره
             whatsappButton.disabled = totalItems === 0;
         }
 
 
-        // 4. دالة تعديل الكمية (زيادة أو نقصان)
+        // دالة تعديل الكمية 
         function changeQuantity(itemId, action) {
             let currentQty = cart[itemId];
+            const isHotSauce = itemId === '4'; 
 
             if (action === 'plus') {
+                // إذا كان صوص حار وكميته 1، لا تزد العدد
+                if (isHotSauce && currentQty >= 1) {
+                    return; 
+                }
                 cart[itemId] = currentQty + 1;
             } else if (action === 'minus' && currentQty > 0) {
                 cart[itemId] = currentQty - 1;
@@ -264,7 +298,7 @@
             updateOrderSummary();
         }
 
-        // 5. ربط الأزرار بدالة تعديل الكمية
+        // ربط الأزرار
         document.querySelectorAll('.quantity-plus').forEach(button => {
             button.addEventListener('click', () => {
                 const itemId = button.getAttribute('data-id');
@@ -280,11 +314,12 @@
         });
 
         
-        // 6. دالة إرسال الطلب عبر الواتساب (مُحسّنة)
+        // دالة إرسال الطلب عبر الواتساب (تم تحديثها لتضمين الملاحظات)
         whatsappButton.addEventListener('click', () => {
             let itemsList = [];
+            const notes = notesField.value.trim(); // قراءة الملاحظات من الحقل
+
             
-            // جمع الأصناف ذات الكمية > 0
             menuItems.forEach(item => {
                 const itemId = item.getAttribute('data-item-id');
                 const itemName = item.getAttribute('data-item-name');
@@ -295,26 +330,26 @@
                 }
             });
             
-            // ترتيب قائمة الطلبات
             const itemsListText = itemsList.join('\n');
             
-            // إنشاء رسالة واتساب
-            const whatsappMessage = 
+            let whatsappMessage = 
                 `*طلب جديد من عربة بشار التميمي* 👑\n\n` +
                 `*قائمة الطلبات:*\n${itemsListText}\n\n` +
-                `*الإجمالي النهائي:* ${totalPrice} ريال يمني\n` +
-                // إضافة تفاصيل الدفع هنا
-                PAYMENT_DETAILS + 
+                `*الإجمالي النهائي:* ${totalPrice} ريال يمني\n\n`;
+                
+            // إضافة الملاحظات إذا وجدت
+            if (notes) {
+                whatsappMessage += `*📝 ملاحظات العميل:* ${notes}\n\n`;
+            }
+
+            whatsappMessage += PAYMENT_DETAILS + 
                 `\n---\n` + 
                 `*شكراً لاختيارك طعمية وفلافل بشار التميمي!*`; 
 
-            // تشفير الرسالة لتعمل في الرابط
             const encodedMessage = encodeURIComponent(whatsappMessage);
             
-            // بناء رابط الواتساب (للهواتف)
             const whatsappUrl = `whatsapp://send?phone=${YOUR_WHATSAPP_NUMBER}&text=${encodedMessage}`;
             
-            // فتح الرابط
             window.open(whatsappUrl, '_system');
         });
         
@@ -322,4 +357,3 @@
     
 </body>
 </html>
-
