@@ -1,87 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>طعمية وفلافل بشار التميمي 👑 - قائمة الطلبات</title>
-    
-    <link rel="stylesheet" href="css/style.css">
-</head>
-
-<body>
-    
-    <h1>طعمية وفلافل بشار التميمي 👑</h1>
-    <p style="text-align: center; font-size: 1.1em;">أهلاً بك في تعز! تفضل باختيار طلبك:</p>
-    
-    <p class="free-item-note">✅ الصوص الحار متوفر مجاناً عند الطلب!</p>
-    
-    <ul id="menu-items">
-        <li data-item-id="1" data-item-name="بطاطس مقرمشة" data-price="300">
-            <img src="https://i.ibb.co/L5V0sS9/potato.jpg" alt="بطاطس مقرمشة" class="item-img">
-            <div class="item-details">
-                <h2>بطاطس مقرمشة</h2>
-                <p>مقلية بتقنية التقريش الخاصة ومتبلة بملح البحر.</p>
-                <p class="item-price">السعر: 300 ريال يمني</p>
-            </div>
-            <div class="quantity-control">
-                <button class="quantity-minus" data-id="1">-</button>
-                <span class="item-quantity" id="qty-1">0</span>
-                <button class="quantity-plus" data-id="1">+</button>
-            </div>
-        </li>
-        
-        <li data-item-id="2" data-item-name="ساندويتش فلافل" data-price="300">
-            <img src="https://i.ibb.co/308kRkY/falafel.jpg" alt="ساندويتش فلافل" class="item-img">
-            <div class="item-details">
-                <h2>ساندويتش فلافل (طعمية)</h2>
-                <p>فلافل مقرمشة، طحينة، خضار طازجة.</p>
-                <p class="item-price">السعر: 300 ريال يمني</p>
-            </div>
-            <div class="quantity-control">
-                <button class="quantity-minus" data-id="2">-</button>
-                <span class="item-quantity" id="qty-2">0</span>
-                <button class="quantity-plus" data-id="2">+</button>
-            </div>
-        </li>
-        
-        <li data-item-id="3" data-item-name="وجبة خاصة (بطاطس وفلافل)" data-price="600">
-            <img src="https://i.ibb.co/N21T4S4/combo.jpg" alt="وجبة خاصة" class="item-img">
-            <div class="item-details">
-                <h2>وجبة خاصة (بطاطس وفلافل)</h2>
-                <p>مزيج رائع من البطاطس والفلافل مع الصوص.</p>
-                <p class="item-price">السعر: 600 ريال يمني</p>
-            </div>
-            <div class="quantity-control">
-                <button class="quantity-minus" data-id="3">-</button>
-                <span class="item-quantity" id="qty-3">0</span>
-                <button class="quantity-plus" data-id="3">+</button>
-            </div>
-        </li>
-        
-        <li data-item-id="4" data-item-name="إضافة صوص حار" data-price="0">
-            <div class="item-details">
-                <h2>هل تطلب صوص حار؟ (مجاني)</h2>
-                <p class="item-price">مجاني</p>
-            </div>
-            <div class="quantity-control">
-                <button class="quantity-minus" data-id="4">-</button>
-                <span class="item-quantity" id="qty-4">0</span>
-                <button class="quantity-plus" data-id="4">+</button>
-            </div>
-        </li>
-    </ul>
-    
-    <div class="summary">
-        <h3 id="total-display">إجمالي الطلب: 0 ريال يمني</h3>
-
-        <textarea id="notes" placeholder="ملاحظات خاصة (الموقع، توصيل، طلبات إضافية)..."></textarea>
-        
-        <button id="whatsapp-button" disabled>أرسل الطلب الآن (واتساب)</button>
-    </div>
-
-
-    <script src="js/script.js"></script>
-    
-</body>
-          </html>
-          
